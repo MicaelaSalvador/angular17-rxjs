@@ -1,5 +1,5 @@
-import { IntroductionService } from './rxjs/introduction.service';
-import { Component } from '@angular/core';
+import { FunctionService } from './rxjs/function.service';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
@@ -10,10 +10,20 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
  
-  constructor(public readonly introductionService: IntroductionService ){
+  @ViewChild('inputref') inputref!:ElementRef<HTMLInputElement>;
 
+  constructor(
+    // public readonly introductionService: IntroductionService
+    public readonly functionService: FunctionService
+  ){}
+
+
+  ngAfterViewInit(): void {
+    this.functionService.fromEvent(this.inputref)
+    console.log('ngAfterViewInit', this.inputref.nativeElement);
   }
+
 
 }
