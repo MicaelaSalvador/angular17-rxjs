@@ -1,7 +1,9 @@
+import { OperatorService } from './rxjs/operator.service';
 import { FunctionService } from './rxjs/function.service';
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -16,13 +18,13 @@ export class AppComponent implements AfterViewInit {
 
   constructor(
     // public readonly introductionService: IntroductionService
-    public readonly functionService: FunctionService
+    // public readonly functionService: FunctionService
+    public readonly operatorService: OperatorService
   ){}
 
 
   ngAfterViewInit(): void {
-    this.functionService.fromEvent(this.inputref)
-    console.log('ngAfterViewInit', this.inputref.nativeElement);
+  // this.operatorService.takeUntil(this.inputref.nativeElement);
   }
 
 
